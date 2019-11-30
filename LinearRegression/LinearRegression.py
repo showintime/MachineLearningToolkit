@@ -18,8 +18,7 @@ class LinearRegression(object):
         self.loss=SquareLoss()
         self.optimizer=GradientDescent(learning_rate=1)
         
-        self.alltemplate='train_loss:{},valid_loss:{}'
-        self.traintemplate='train_loss:{}'
+        
     def predict(self,x):
         x=self.dense(x)
         return x
@@ -28,18 +27,16 @@ class LinearRegression(object):
     def backward(self,loss):
         pass
     def train(self,train_x,train_y,valid_x=None,valid_y=None):
-        train_predictions=self.dense(train_x)
-        
+		
+        train_predictions=self.forward(train_x)
         train_loss=self.loss(train_predictions,train_y)
+		losslist=[train_loss]
         if valid_x is not None:
             valid_predictions=self.dense(valid_x)
             valid_loss=self.loss(valid_predictions,valid_y)
-            print(self.alltemplate.format(train_loss,valid_loss))
-        else:
-            print(self.traintemplate.format(train_loss))
-            
+			losslist.append(valid_loss)
         losses=self.optimizer(self.loss)
         self.dense.backward(losses)
-        
+        return losslist
         
         
