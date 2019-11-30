@@ -27,7 +27,7 @@ class Dense(object):
         '''
         self.w=np.random.random(size=shape)
         self.b=np.random.random(size=(shape[1]))
-        print('你只能看到我一次')
+        #print('you only look once')
         self.issuccessinit=True
     def forward(self,x):
         return x@self.w+self.b
