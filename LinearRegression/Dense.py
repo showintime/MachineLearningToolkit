@@ -25,17 +25,26 @@ class Dense(object):
         '''
         calculte x@self.w+self.b
         '''
-        
         self.w=np.random.random(size=shape)
         self.b=np.random.random(size=(shape[1]))
-        self.isfirstinit=False
+        print('你只能看到我一次')
+        self.issuccessinit=True
     def forward(self,x):
         return x@self.w+self.b
-    def backward(self,loss):
-        pass
+    def applygradient(self,dw,db):
+        self.w-=dw
+        self.b-=db
+    def backward(self,losses):
+        dw=self.x.T@losses
+        db=np.sum(losses,axis=0)
+        self.applygradient(dw,db)
+        dx=losses@self.w.T
+        return dx
     def __call__(self,x):
+        self.x=x
         if not self.issuccessinit:
             self.shape[0]=x.shape[1]
             self.realinit(shape=self.shape)
         return self.forward(x)
     
+

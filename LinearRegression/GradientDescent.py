@@ -9,6 +9,6 @@ class GradientDescent(object):
     def __init__(self,learning_rate=0.1):
         self.learning_rate=learning_rate
     def backward(self,loss):
-        loss.backward(self.learning_rate)
+        return loss.backward(self.learning_rate)
     def __call__(self,loss):
-        self.backward(loss)
+        return self.backward(loss)

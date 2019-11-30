@@ -12,12 +12,13 @@ import numpy as np
 class SquareLoss(object):
     def __init__(self):
         pass
-    def backward(self):
-        pass
+    def backward(self,learning_rate):
+        loss=learning_rate/self.predictions.shape[0]*(self.predictions-self.labels)
+        return loss
+    
     def forward(self,predictions,labels):
-        maxis=tuple(list(range(len(predictions.shape)))[1:])
-        self.batch_loss=np.sum(np.square(predictions-labels),axis=maxis)
-        return np.mean(self.batch_loss)
+        self.batch_loss=np.square(predictions-labels)
+        return np.mean(np.sum(self.batch_loss,axis=1))
     def __call__(self,predictions,labels):
         self.predictions=predictions
         self.labels=labels
