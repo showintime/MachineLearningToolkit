@@ -1,23 +1,21 @@
 # -*- coding: utf-8 -*-
 """
-Created on Sat Nov 30 00:16:56 2019
+Created on Sun Dec  1 23:00:26 2019
 
 @author: ZWH
 """
-
 
 from Dense import Dense
 from SquareLoss import SquareLoss
 from GradientDescent import GradientDescent
 from Sequence import Sequence
+from Softmax import Softmax
 
-class LinearRegression(object):
-    
+class smallnetwork(object):
     def __init__(self):
-        self.model=Sequence([Dense(1)])
+        self.model=Sequence([Dense(10),Softmax()])
         self.loss=SquareLoss()
         self.optimizer=GradientDescent()
-        
         
     def predict(self,x):
         x=self.model(x)
@@ -40,5 +38,3 @@ class LinearRegression(object):
         losses=self.optimizer(self.loss)
         self.model.backward(losses)
         return losslist
-        
-        

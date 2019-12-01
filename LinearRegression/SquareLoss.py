@@ -18,7 +18,7 @@ class SquareLoss(object):
     
     def forward(self,predictions,labels):
         self.batch_loss=np.square(predictions-labels)
-        return np.mean(np.sum(self.batch_loss,axis=1))
+        return np.mean(np.sum(self.batch_loss,axis=-1))
     def __call__(self,predictions,labels):
         self.predictions=predictions
         self.labels=labels
