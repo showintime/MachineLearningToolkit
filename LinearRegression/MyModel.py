@@ -121,8 +121,8 @@ print('train:{},valid:{},test:{}'.format(atrain_acc,avalid_acc,atest_acc))
 
 
 TRAIN_NUM=len(trainy)
-EPOCHES=10
-BATCH_SIZE=4
+EPOCHES=5
+BATCH_SIZE=16
 template='Epoch:{:>4}, Train_loss:{:.6}'
 
 
