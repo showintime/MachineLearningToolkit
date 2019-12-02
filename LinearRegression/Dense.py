@@ -25,8 +25,8 @@ class Dense(object):
         '''
         calculte x@self.w+self.b
         '''
-        self.w=np.random.random(size=shape)
-        self.b=np.random.random(size=(shape[1]))
+        self.w=np.random.random(size=shape)*6/sum(shape)
+        self.b=np.zeros(shape=(shape[1]))+0.1
         #print('you only look once')
         self.issuccessinit=True
     def forward(self,x):
@@ -43,7 +43,7 @@ class Dense(object):
     def __call__(self,x):
         self.x=x
         if not self.issuccessinit:
-            self.shape[0]=x.shape[1]
+            self.shape[0]=x.shape[-1]
             self.realinit(shape=self.shape)
         return self.forward(x)
     

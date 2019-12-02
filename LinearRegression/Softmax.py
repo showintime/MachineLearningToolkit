@@ -27,12 +27,9 @@ class Softmax(object):
         ex=np.exp(x)
         x=ex/np.sum(ex,axis=-1,keepdims=True)
         #now x is softmax
-        tem00=np.expand_dims(x,axis=-1)
-        tem01=np.expand_dims(x,axis=-2)
-        tem=tem00@tem01
-        tem1=np.expand_dims(losses,axis=-2)@tem
-        tem11=np.sum(tem1,axis=-2)
-        tem2=losses*x
-        tem3=tem2-tem11
-        return tem3
+        
+        tem=np.expand_dims(x,axis=-1)@np.expand_dims(x,axis=-2)
+        
+       
+        return losses*x-np.sum(np.expand_dims(losses,axis=-2)@tem,axis=-2)
 

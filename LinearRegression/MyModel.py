@@ -44,6 +44,8 @@ for epoch in range(EPOCHES):
 
 #分类
 
+
+
 from mnist_network import smallnetwork
 
 
@@ -95,15 +97,9 @@ def show(r=4,c=4):
         plt.xlabel('pre:{},lab:{}'.format(pre,lab))
     plt.show()
     
-    
-    
-    
-    return None
 
-show()
-show()
-show()
-show()
+
+#show()
 
 def acc(x,y):
     predictions=sn.predict(x)
@@ -119,13 +115,17 @@ atrain_acc=acc(trainx,trainy)
 avalid_acc=acc(validx,validy)
 atest_acc=acc(testx,testy)
 
+print('train:{},valid:{},test:{}'.format(atrain_acc,avalid_acc,atest_acc))
+
 
 
 
 TRAIN_NUM=len(trainy)
 EPOCHES=10
-BATCH_SIZE=32
+BATCH_SIZE=4
 template='Epoch:{:>4}, Train_loss:{:.6}'
+
+
 for epoch in range(EPOCHES):
     for l in range(0,TRAIN_NUM,BATCH_SIZE):
         
@@ -133,16 +133,15 @@ for epoch in range(EPOCHES):
         r=min(l+BATCH_SIZE,TRAIN_NUM)
         train_loss=sn.train(trainx[l:r],trainy[l:r])
         
+        
     #train_loss=sn.loss(sn.predict(trainx),y)
-        #print(template.format(epoch+1,train_loss[0]))
-show()
-show()
-show()
-show()
+    print(template.format(epoch+1,train_loss[0]))
+#show()
 
 btrain_acc=acc(trainx,trainy)
 bvalid_acc=acc(validx,validy)
 btest_acc=acc(testx,testy)
+print('train:{},valid:{},test:{}'.format(btrain_acc,bvalid_acc,btest_acc))
 
 
 

@@ -10,10 +10,11 @@ from SquareLoss import SquareLoss
 from GradientDescent import GradientDescent
 from Sequence import Sequence
 from Softmax import Softmax
+from Sigmoid import Sigmoid
 
 class smallnetwork(object):
     def __init__(self):
-        self.model=Sequence([Dense(10),Softmax()])
+        self.model=Sequence([Dense(100),Sigmoid(),Dense(10),Softmax()])
         self.loss=SquareLoss()
         self.optimizer=GradientDescent()
         

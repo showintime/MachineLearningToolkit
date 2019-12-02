@@ -19,5 +19,5 @@ class Sigmoid(object):
         return self.forward(x)
     def backward(self,losses):
         ex=np.exp(-self.x)
-        return ex/((1+ex)**2)
+        return losses*ex/((1+ex)**2)
 
