@@ -121,8 +121,8 @@ print('train:{},valid:{},test:{}'.format(atrain_acc,avalid_acc,atest_acc))
 
 
 TRAIN_NUM=len(trainy)
-EPOCHES=5
-BATCH_SIZE=16
+EPOCHES=20
+BATCH_SIZE=32
 template='Epoch:{:>4}, Train_loss:{:.6}'
 
 
@@ -133,16 +133,17 @@ for epoch in range(EPOCHES):
         r=min(l+BATCH_SIZE,TRAIN_NUM)
         train_loss=sn.train(trainx[l:r],trainy[l:r])
         
-        
+    btrain_acc=acc(trainx,trainy)
+    bvalid_acc=acc(validx,validy)
+    btest_acc=acc(testx,testy)
     #train_loss=sn.loss(sn.predict(trainx),y)
     print(template.format(epoch+1,train_loss[0]))
+    print('train:{},valid:{},test:{}'.format(btrain_acc,bvalid_acc,btest_acc))
+
 #show()
-
-btrain_acc=acc(trainx,trainy)
-bvalid_acc=acc(validx,validy)
-btest_acc=acc(testx,testy)
-print('train:{},valid:{},test:{}'.format(btrain_acc,bvalid_acc,btest_acc))
-
+    
+del data_path
+del trainx,trainy,testx,testy,validx,validy
 
 
 

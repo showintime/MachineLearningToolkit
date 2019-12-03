@@ -5,18 +5,21 @@ Created on Sun Dec  1 23:00:26 2019
 @author: ZWH
 """
 
-from Dense import Dense
-from SquareLoss import SquareLoss
-from GradientDescent import GradientDescent
-from Sequence import Sequence
-from Softmax import Softmax
-from Sigmoid import Sigmoid
-from Tanh import Tanh
+from Layer.Dense import Dense
+from Layer.Sequence import Sequence
+from Layer.Softmax import Softmax
+from Layer.Sigmoid import Sigmoid
+from Layer.Tanh import Tanh
+
+from Loss.MeanAbsoluteError import MeanAbsoluteError
+from Loss.MeanSquaredError import MeanSquaredError
+from Loss.SoftmaxCorssEntropypy import SoftmaxCrossEntropy
+from Optimizer.GradientDescent import GradientDescent
 
 class smallnetwork(object):
     def __init__(self):
-        self.model=Sequence([Dense(40),Tanh(),Dense(10),Softmax()])
-        self.loss=SquareLoss()
+        self.model=Sequence([Dense(100),Tanh(),Dense(10),Softmax()])
+        self.loss=SoftmaxCrossEntropy()
         self.optimizer=GradientDescent()
         
     def predict(self,x):

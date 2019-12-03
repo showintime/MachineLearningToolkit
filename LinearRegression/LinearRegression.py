@@ -6,16 +6,16 @@ Created on Sat Nov 30 00:16:56 2019
 """
 
 
-from Dense import Dense
-from SquareLoss import SquareLoss
-from GradientDescent import GradientDescent
-from Sequence import Sequence
+from Layer.Dense import Dense
+from Loss.MeanSquaredError import MeanSquaredError
+from Optimizer.GradientDescent import GradientDescent
+from Layer.Sequence import Sequence
 
 class LinearRegression(object):
     
     def __init__(self):
         self.model=Sequence([Dense(1)])
-        self.loss=SquareLoss()
+        self.loss=MeanSquaredError()
         self.optimizer=GradientDescent()
         
         
@@ -40,5 +40,4 @@ class LinearRegression(object):
         losses=self.optimizer(self.loss)
         self.model.backward(losses)
         return losslist
-        
         

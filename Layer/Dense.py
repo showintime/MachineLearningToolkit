@@ -25,6 +25,8 @@ class Dense(object):
         '''
         calculte x@self.w+self.b
         '''
+        #np.sqrt(6/sum(self.shape))
+        
         self.w=np.random.random(size=shape)*6/sum(shape)
         self.b=np.zeros(shape=(shape[1]))+0.1
         #print('you only look once')
