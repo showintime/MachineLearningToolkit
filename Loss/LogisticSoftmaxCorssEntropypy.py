@@ -9,7 +9,7 @@ import numpy as np
 
 EPSON=1e-8
 
-class SoftmaxCrossEntropy(object):
+class LogisticSoftmaxCrossEntropy(object):
     def __init__(self):
         pass
     def backward(self,learning_rate):

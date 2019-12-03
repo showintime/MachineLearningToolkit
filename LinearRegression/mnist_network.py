@@ -13,7 +13,7 @@ from Layer.Tanh import Tanh
 
 from Loss.MeanAbsoluteError import MeanAbsoluteError
 from Loss.MeanSquaredError import MeanSquaredError
-from Loss.SoftmaxCorssEntropypy import SoftmaxCrossEntropy
+from Loss.LogisticSoftmaxCorssEntropypy import LogisticSoftmaxCrossEntropy
 from Optimizer.GradientDescent import GradientDescent
 
 class smallnetwork(object):
