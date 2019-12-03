@@ -48,39 +48,6 @@ for epoch in range(EPOCHES):
 
 from mnist_network import smallnetwork
 
-
-import matplotlib.pyplot as plt
-
-data_path='C:/Users/ZWH/Desktop/MyNeuralNetwork/ANN/pkldata/'
-import os
-import numpy as np
-print(os.listdir(data_path))
-def readdata(path):
-    import os
-    import pickle
-    def readadata(path):
-        with open(path,'rb') as f:
-            data=pickle.load(f)
-        return data
-    files=os.listdir(path)
-    for file in files:
-        if 'train' in file:
-            traindata=readadata(path+file)
-        elif 'valid' in file:
-            validdata=readadata(path+file)
-        elif 'test' in file:
-            testdata=readadata(path+file)
-    return traindata,validdata,testdata
-(trainx,trainy),(validx,validy),(testx,testy)=readdata(data_path)
-
-
-
-
-k=np.identity(10)
-trainy=k[trainy]
-validy=k[validy]
-testy=k[testy]
-
 sn=smallnetwork()
 
 def show(r=4,c=4):
@@ -136,7 +103,7 @@ for epoch in range(EPOCHES):
     btrain_acc=acc(trainx,trainy)
     bvalid_acc=acc(validx,validy)
     btest_acc=acc(testx,testy)
-    #train_loss=sn.loss(sn.predict(trainx),y)
+    train_loss=sn.loss(sn.predict(trainx),trainy)
     print(template.format(epoch+1,train_loss[0]))
     print('train:{},valid:{},test:{}'.format(btrain_acc,bvalid_acc,btest_acc))
 
