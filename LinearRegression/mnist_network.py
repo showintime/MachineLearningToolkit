@@ -10,16 +10,17 @@ from Layer.Sequence import Sequence
 from Layer.Softmax import Softmax
 from Layer.Sigmoid import Sigmoid
 from Layer.Tanh import Tanh
+from Layer.Dropout import Dropout
 
 from Loss.MeanAbsoluteError import MeanAbsoluteError
 from Loss.MeanSquaredError import MeanSquaredError
-from Loss.LogisticSoftmaxCorssEntropypy import LogisticSoftmaxCrossEntropy
+from Loss.LogisticSoftmaxCrossEntropy import LogisticSoftmaxCrossEntropy
 from Optimizer.GradientDescent import GradientDescent
 
 class smallnetwork(object):
     def __init__(self):
-        self.model=Sequence([Dense(100),Tanh(),Dense(10),Softmax()])
-        self.loss=SoftmaxCrossEntropy()
+        self.model=Sequence([Dense(100),Tanh(),Dropout(0.5),Dense(10),Softmax()])
+        self.loss=LogisticSoftmaxCrossEntropy()
         self.optimizer=GradientDescent()
         
     def predict(self,x):

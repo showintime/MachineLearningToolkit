@@ -44,6 +44,17 @@ for epoch in range(EPOCHES):
 
 #分类
 
+import numpy as np
+import matplotlib.pyplot as plt
+data_path='C:/Users/ZWH/Desktop/MyNeuralNetwork/ANN/pkldata/'
+def openpkl(data_path,name):
+    import pickle
+    with open(data_path+name+'.pkl','rb') as f:
+        data=pickle.load(f)
+    return data
+trainx,trainy=openpkl(data_path,'train')
+validx,validy=openpkl(data_path,'valid')
+testx,testy=openpkl(data_path,'test')
 
 
 from mnist_network import smallnetwork
@@ -64,7 +75,10 @@ def show(r=4,c=4):
         plt.xlabel('pre:{},lab:{}'.format(pre,lab))
     plt.show()
     
-
+key=np.identity(10)
+trainy=key[trainy]
+validy=key[validy]
+testy=key[testy]
 
 #show()
 
@@ -89,7 +103,7 @@ print('train:{},valid:{},test:{}'.format(atrain_acc,avalid_acc,atest_acc))
 
 TRAIN_NUM=len(trainy)
 EPOCHES=20
-BATCH_SIZE=32
+BATCH_SIZE=4
 template='Epoch:{:>4}, Train_loss:{:.6}'
 
 
@@ -104,7 +118,7 @@ for epoch in range(EPOCHES):
     bvalid_acc=acc(validx,validy)
     btest_acc=acc(testx,testy)
     train_loss=sn.loss(sn.predict(trainx),trainy)
-    print(template.format(epoch+1,train_loss[0]))
+    print(template.format(epoch+1,train_loss))
     print('train:{},valid:{},test:{}'.format(btrain_acc,bvalid_acc,btest_acc))
 
 #show()
