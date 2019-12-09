@@ -46,6 +46,7 @@ for epoch in range(EPOCHES):
 
 import numpy as np
 import matplotlib.pyplot as plt
+
 data_path='C:/Users/ZWH/Desktop/MyNeuralNetwork/ANN/pkldata/'
 def openpkl(data_path,name):
     import pickle

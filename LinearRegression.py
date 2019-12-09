@@ -6,10 +6,10 @@ Created on Sat Nov 30 00:16:56 2019
 """
 
 
-from Layer.Dense import Dense
-from Loss.MeanSquaredError import MeanSquaredError
-from Optimizer.GradientDescent import GradientDescent
-from Layer.Sequence import Sequence
+from MachineLearningToolkitCore.Layer.Dense import Dense
+from MachineLearningToolkitCore.Loss.MeanSquaredError import MeanSquaredError
+from MachineLearningToolkitCore.Optimizer.GradientDescent import GradientDescent
+from MachineLearningToolkitCore.Layer.Sequence import Sequence
 
 class LinearRegression(object):
     

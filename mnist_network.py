@@ -5,17 +5,17 @@ Created on Sun Dec  1 23:00:26 2019
 @author: ZWH
 """
 
-from Layer.Dense import Dense
-from Layer.Sequence import Sequence
-from Layer.Softmax import Softmax
-from Layer.Sigmoid import Sigmoid
-from Layer.Tanh import Tanh
-from Layer.Dropout import Dropout
+from MachineLearningToolkitCore.Layer.Dense import Dense
+from MachineLearningToolkitCore.Layer.Sequence import Sequence
+from MachineLearningToolkitCore.Layer.Softmax import Softmax
+from MachineLearningToolkitCore.Layer.Sigmoid import Sigmoid
+from MachineLearningToolkitCore.Layer.Tanh import Tanh
+from MachineLearningToolkitCore.Layer.Dropout import Dropout
 
-from Loss.MeanAbsoluteError import MeanAbsoluteError
-from Loss.MeanSquaredError import MeanSquaredError
-from Loss.LogisticSoftmaxCrossEntropy import LogisticSoftmaxCrossEntropy
-from Optimizer.GradientDescent import GradientDescent
+from MachineLearningToolkitCore.Loss.MeanAbsoluteError import MeanAbsoluteError
+from MachineLearningToolkitCore.Loss.MeanSquaredError import MeanSquaredError
+from MachineLearningToolkitCore.Loss.LogisticSoftmaxCrossEntropy import LogisticSoftmaxCrossEntropy
+from MachineLearningToolkitCore.Optimizer.GradientDescent import GradientDescent
 
 class smallnetwork(object):
     def __init__(self):
