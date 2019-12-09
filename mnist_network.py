@@ -19,7 +19,7 @@ from Optimizer.GradientDescent import GradientDescent
 
 class smallnetwork(object):
     def __init__(self):
-        self.model=Sequence([Dense(100),Tanh(),Dropout(0.5),Dense(10),Softmax()])
+        self.model=Sequence([Dense(784),Tanh(),Dropout(0.5),Dense(10),Softmax()])
         self.loss=LogisticSoftmaxCrossEntropy()
         self.optimizer=GradientDescent()
         
