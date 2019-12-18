@@ -33,7 +33,11 @@ valid data number 10000
 test  data number 10000
 '''
 from mnist_network import smallnetwork
-
+'''
+model=Sequence([Dense(784),Tanh(),Dropout(0.5),Dense(10),Softmax()])
+loss=LogisticSoftmaxCrossEntropy()
+optimizer=GradientDescent()
+'''
 sn=smallnetwork()
 
 def show(r=4,c=4):
@@ -63,13 +67,8 @@ def acc(x,y):
 
     return tem
 
-
-atrain_acc=acc(trainx,trainy)
-avalid_acc=acc(validx,validy)
-atest_acc=acc(testx,testy)
-
-print('train:{},valid:{},test:{}'.format(atrain_acc,avalid_acc,atest_acc))
-
+acc_template='train_acc:{}, valid_acc:{}, test_acc:{}'
+print(acc_template.format(acc(trainx,trainy),acc(validx,validy),acc(testx,testy)))
 
 
 
@@ -95,3 +94,20 @@ for epoch in range(EPOCHES):
 
 ```
 
+### Result:
+
+```
+train:0.0989,valid:0.098,test:0.0954
+Epoch:   1, Train_loss:0.35232
+train:0.89194,valid:0.9065,test:0.8976
+Epoch:   2, Train_loss:0.275229
+train:0.91518,valid:0.9237,test:0.9186
+Epoch:   3, Train_loss:0.232661
+train:0.93056,valid:0.938,test:0.9283
+Epoch:   4, Train_loss:0.205994
+train:0.93746,valid:0.9452,test:0.9387
+Epoch:   5, Train_loss:0.194031
+train:0.94202,valid:0.9447,test:0.9425
+Epoch:   6, Train_loss:0.187288
+train:0.94284,valid:0.9464,test:0.9396
+```
