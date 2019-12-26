@@ -5,19 +5,37 @@ Created on Sun Dec  1 11:11:16 2019
 @author: ZWH
 """
 
-class Sequence(object):
-    def __init__(self,sequencelist):
-        self.layerlist=sequencelist
-    def add(self,layer):
+from LayerBase import LayerBase
+
+class Sequence(LayerBase):
+    def __init__(self, sequencelist):
+        self.layerlist = sequencelist
+    def add(self, layer):
         self.layerlist.append(layer)
-    def forward(self,x):
+    
+    def apply_gradient(self):
+        
+    
+    def forward(self, x):
         for layer in self.layerlist:
-            x=layer(x)
+            x = layer(x)
         return x
-    def backward(self,losses):
+    def compute_gradient(self, losses):
         self.layerlist.reverse()
+        
         for layer in self.layerlist:
-            losses=layer.backward(losses)
+            losses = layer.backward(losses)
+
         self.layerlist.reverse()
-    def __call__(self,x):
+        return losses
+    def backward(self, losses):
+        return compute_gradient(losses)
+    
+    def __call__(self, x):
         return self.forward(x)
+    
+    def build(self, input_shape):
+        output_shape = input_shape
+        for layer in self.layerlist:
+            output_shape = layer.build(output_shape)
+        return output_shape

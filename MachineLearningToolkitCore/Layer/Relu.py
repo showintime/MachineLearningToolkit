@@ -5,9 +5,9 @@ Created on Wed Dec 18 17:50:51 2019
 @author: ZWH
 """
 
+from LayerBase import LayerBase
 
-
-class Relu(object):
+class Relu(LayerBase):
     def __init__(self):
         pass
     def relu(self, x):

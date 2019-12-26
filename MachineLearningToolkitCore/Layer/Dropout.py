@@ -6,8 +6,8 @@ Created on Wed Dec  4 21:30:48 2019
 """
 
 import numpy as np
-
-class Dropout(object):
+from LayerBase import LayerBase
+class Dropout(LayerBase):
     def __init__(self,rate=0.5):
         self.rate=rate
     def dropout(self,x):
