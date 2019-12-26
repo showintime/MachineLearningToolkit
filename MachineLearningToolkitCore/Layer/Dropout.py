@@ -8,15 +8,15 @@ Created on Wed Dec  4 21:30:48 2019
 import numpy as np
 from LayerBase import LayerBase
 class Dropout(LayerBase):
-    def __init__(self,rate=0.5):
-        self.rate=rate
-    def dropout(self,x):
-        return x*self.dropmatrix
-    def forward(self,x):
-        self.dropmatrix=(np.random.random(size=x.shape)>self.rate)*1.0
+    def __init__(self, rate = 0.5):
+        self.rate = rate
+    def dropout(self, x):
+        return x * self.dropmatrix
+    def forward(self, x):
+        self.dropmatrix = (np.random.random(size = x.shape) > self.rate) * 1.0
         return self.dropout(x)
-    def __call__(self,x):
-        self.x=x
+    def __call__(self, x):
+        self.x = x
         return self.forward(x)
-    def backward(self,losses):
-        return losses*self.dropmatrix
+    def backward(self, losses):
+        return losses * self.dropmatrix

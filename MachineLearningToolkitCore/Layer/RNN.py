@@ -20,25 +20,22 @@ standard RNN
 '''
 class RNN(LayerBase):
     def __init__(self, unit_nums, activation = Tanh()):
-        self.h_shape = [unit_nums]
+        self.unit_nums = unit_nums
         self.layer = Sequence([Dense(unit_nums), activation])
     def forward(self, x):
         '''
         x : ndarray ,shape = [batch_size, length, dims]
         '''
-        
         x = np.transpose(x, axes = [1, 0, 2])
         # now x shape = [length, batch_size, dims]
-        length = x.shape[0]
+        self.length = x.shape[0]
         
-        self.hs = [np.zero(shape = [x.shape[1], self.h_shape])]
-        # self.h shape = [batch_size, unit_nums]
-        
-        
-        
-        for i in range(lenght):
-            concat = np.concatenate([x[i], self.hs[-1]], axis = -1)
-            self.hs.append(self.layer(concat))
+        self.hs = [np.zero(shape = [x.shape[1], self.unit_nums])]
+        # self.hs shape = [batch_size, unit_nums]
+
+        for i in range(self.length):
+            concat_hx = np.concatenate([x[i], self.hs[-1]], axis = -1)
+            self.hs.append(self.layer(concat_hx))
         
         outputs = np.transpose(np.array(self.hs[1:]), axes = [1, 0, 2])
         
@@ -52,15 +49,27 @@ class RNN(LayerBase):
         self.x = x
         return self.forward(x)
     
-    
-    def bachward(self):
-        pass
+    def apply_gradient(self):
+        self.layer.apply_gradient()
+    def compute_gradient(self, losses):
+        for i in range(self.length):
+            
+        return self.layer.compute_gradient(losses)
+    def bachward(self, losses):
+        return self.compute_gradient(losses)
     
     
     def build(self, input_shape):
-        self.h = np.zeros(self.h_shape)
-        
-        output_shape = [None, self.h_shape + input_shape[-1]]
-        output_shape = self.layer.build(output_shape)
+        '''
+        这里假设输出的是所有时刻的h，以后会补充到所有选项。
+        input_shape = [batch_size, length, dims]
+        output_shape = [batch_size, length, unit_nums]
+        '''
+        output_shape = input_shape
+        output_shape[-1] = self.unit_nums
+        #这里并不保存layer的输出，因为我们要的是它多次计算的维度，而不是一层dense一样
+        _ = self.layer.build(output_shape)
+
+        return output_shape
     
     

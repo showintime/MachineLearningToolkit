@@ -14,7 +14,8 @@ class Sequence(LayerBase):
         self.layerlist.append(layer)
     
     def apply_gradient(self):
-        
+        for layer in self.layerlist:
+            layer.apply_gradient()
     
     def forward(self, x):
         for layer in self.layerlist:
@@ -29,7 +30,7 @@ class Sequence(LayerBase):
         self.layerlist.reverse()
         return losses
     def backward(self, losses):
-        return compute_gradient(losses)
+        return self.compute_gradient(losses)
     
     def __call__(self, x):
         return self.forward(x)
@@ -39,3 +40,4 @@ class Sequence(LayerBase):
         for layer in self.layerlist:
             output_shape = layer.build(output_shape)
         return output_shape
+
