@@ -13,6 +13,8 @@ from LayerBase import LayerBase
 Dense layer is a trainable layer, which means that it has parameters to train.
 Attention to use this layer if you want to reuse this layer parameter.
 
+Attention : The Layer Dense in this version is not supported for reusing!
+
 parameter layer
 x shape = [batch_size, input_size]
 w shape = [input_size, output_size]
@@ -34,9 +36,7 @@ class Dense(LayerBase):
         
         self.w = np.random.random(size = self.weight_shape) * 6 / sum(self.weight_shape)
         self.b = np.zeros(shape = self.bias_shape) + 0.1
-        
-        self.dw = np.zeros(shape = self.weight_shape)
-        self.db = np.zeros(shape = self.bias_shape)
+
         #print('you only look once')
         output_shape = input_shape
         output_shape[-1] = self.weight_shape[-1]
@@ -51,12 +51,11 @@ class Dense(LayerBase):
         self.w -= self.dw
         self.b -= self.db
         
-        self.dw *= 0
-        self.db *= 0
+
         
     def compute_gradient(self, losses):
-        self.dw += self.x.T @ losses
-        self.db += np.sum(losses, axis = 0)
+        self.dw = self.x.T @ losses
+        self.db = np.sum(losses, axis = 0)
         
         self.dx = losses @ self.w.T
         return self.dx
