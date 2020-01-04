@@ -53,7 +53,7 @@ class RNN(LayerBase):
         self.layer.apply_gradient()
     def compute_gradient(self, losses):
         for i in range(self.length):
-            
+            pass
         return self.layer.compute_gradient(losses)
     def bachward(self, losses):
         return self.compute_gradient(losses)
