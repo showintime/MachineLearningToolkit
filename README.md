@@ -1,7 +1,8 @@
 
 # Machine Learning Toolkit MLTK
-
 [TOC]
+A machine learning toolkit base on numpy[CPU]
+
 
 ## Linear Regression
 
